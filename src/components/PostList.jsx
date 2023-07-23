@@ -54,6 +54,9 @@ export default function PostList() {
       <h1 className="text-3xl font-bold mb-4">
         Posts
       </h1>
+      <h3 className='text-xl font-semibold mb-3'>
+        Page {page}
+      </h3>
       {loading ? (
         <p className="text-gray-500">
           Loading...
