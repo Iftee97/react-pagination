@@ -15,7 +15,6 @@ export default function PostList() {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-
         // Only set the state if the component is still mounted
         if (isMounted) {
           setPosts(response.data)
@@ -29,7 +28,6 @@ export default function PostList() {
         }
       }
     }
-
     fetchPosts()
 
     // Cleanup function to cancel any pending network requests and subscriptions
@@ -48,7 +46,7 @@ export default function PostList() {
     // setCurrentPosts(posts.slice((page - 1) * postsPerPage, page * postsPerPage)) // breakdown of the above lines
   }, [posts, page, postsPerPage])
 
-  console.log('currentPosts: >>>>>>>>', currentPosts)
+  // console.log('currentPosts: >>>>>>>>', currentPosts)
 
   return (
     <div className="p-4">
