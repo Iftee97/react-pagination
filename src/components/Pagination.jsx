@@ -11,23 +11,22 @@ export default function Pagination({ postsPerPage, totalPosts }) {
 
   return (
     <nav>
-      <ul className="flex items-center justify-center gap-2 list-none pagination">
+      <span className="flex items-center justify-center gap-2">
         {pageNumbers.map((number) => (
-          <li
+          <Link
             key={number}
+            to={`/${number}`}
             className={`
-              px-2 py-1 rounded cursor-pointer
+              px-3 py-1 rounded cursor-pointer
               ${location.pathname === `/${number}` || (location.pathname === '/' && number === 1)
                 ? 'bg-blue-500 text-white'
                 : 'bg-white text-blue-500 border border-blue-500'
               }`}
           >
-            <Link to={`/${number}`}>
-              {number}
-            </Link>
-          </li>
+            {number}
+          </Link>
         ))}
-      </ul>
+      </span>
     </nav>
   )
 }

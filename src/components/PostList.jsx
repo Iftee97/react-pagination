@@ -45,6 +45,7 @@ export default function PostList() {
     const lastIndex = parseInt(page) * postsPerPage // Calculate the index of the last post on the current page
     const firstIndex = lastIndex - postsPerPage // Calculate the index of the first post on the current page
     setCurrentPosts(posts.slice(firstIndex, lastIndex)) // Get the current posts to be displayed
+    // setCurrentPosts(posts.slice((page - 1) * postsPerPage, page * postsPerPage)) // breakdown of the above lines
   }, [posts, page, postsPerPage])
 
   console.log('currentPosts: >>>>>>>>', currentPosts)
