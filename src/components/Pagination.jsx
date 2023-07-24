@@ -1,17 +1,38 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-export default function Pagination({ postsPerPage, totalPosts }) {
+export default function Pagination({ currentPage, postsPerPage, totalPosts }) {
   const pageNumbers = []
   const location = useLocation()
+  const navigate = useNavigate()
 
   for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
     pageNumbers.push(i)
   }
 
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      navigate(`/${currentPage - 1}`)
+    }
+  }
+
+  const handleNextClick = () => {
+    if (currentPage < pageNumbers.length) {
+      navigate(`/${currentPage + 1}`)
+    }
+  }
+
   return (
     <nav>
-      <span className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-2">
+        {currentPage > 1 && (
+          <button
+            className="px-3 py-1 rounded cursor-pointer bg-white text-blue-500 border border-blue-500"
+            onClick={handlePrevClick}
+          >
+            Prev
+          </button>
+        )}
         {pageNumbers.map((number) => (
           <Link
             key={number}
@@ -26,7 +47,15 @@ export default function Pagination({ postsPerPage, totalPosts }) {
             {number}
           </Link>
         ))}
-      </span>
+        {currentPage < pageNumbers.length && (
+          <button
+            onClick={handleNextClick}
+            className="px-3 py-1 rounded cursor-pointer bg-white text-blue-500 border border-blue-500"
+          >
+            Next
+          </button>
+        )}
+      </div>
     </nav>
   )
 }

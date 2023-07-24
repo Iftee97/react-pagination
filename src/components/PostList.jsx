@@ -72,6 +72,7 @@ export default function PostList() {
             ))}
           </ul>
           <Pagination
+            currentPage={parseInt(page)}
             postsPerPage={postsPerPage}
             totalPosts={posts.length}
           />
